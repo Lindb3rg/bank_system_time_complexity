@@ -1,4 +1,3 @@
-
 from datetime import datetime,date,timedelta
 from time import time
 import random
@@ -95,4 +94,3 @@ if __name__=="__main__":
     search_2 = search_account_no(customer_objects,"1111-9999999999")
     end = time()
     print(f"Searching for 1111-9999999999 took {end-start} seconds. ")
-
