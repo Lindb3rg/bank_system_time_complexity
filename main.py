@@ -47,15 +47,15 @@ class Customer:
     
 
 
-def create_customers(count:int,account_format:int):
-    customer_objects = []
-    for i in range(1,count):
-        customer = Customer()
-        customer.account = str(i).zfill(account_format)
-        customer_objects.append(customer)
+# def create_customers(count:int,account_format:int):
+#     customer_objects = []
+#     for i in range(1,count):
+#         customer = Customer()
+#         customer.account = str(i).zfill(account_format)
+#         customer_objects.append(customer)
 
     
-    return customer_objects
+#     return customer_objects
 
 
 def search_account_no(list:list,account_no:str):
