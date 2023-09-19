@@ -4,16 +4,15 @@ from time import time
 import random
 from random import randint
         
-@dataclass
-class Account:
-    account_no = str
+
     
 
 
 
 class Customer:
-    def __init__(self,account_no, name = None,birthdate=None):
+    def __init__(self,customer_id=int, name = None,birthdate=None):
         
+        self.customer_id = customer_id
         if name is None:
             self._name = self._create_new_name()
         else:
@@ -24,14 +23,14 @@ class Customer:
             self._birthdate = birthdate
         self._created = datetime.now()
         self._last_updated = datetime.now()
-        self._account_no = {}
         self._account_prefix = "1111-"
+        self._account_no = f"{self._account_prefix}{str(customer_id).zfill(10)}"
         self._balance = 0
 
 
     
     def __repr__(self) -> str:
-        return f"{self._account_no}"
+        return f"{self._name}"
 
 
     def _create_new_name(self):
@@ -58,9 +57,20 @@ class Customer:
     
 
 
+
+
 def create_customers(count:int,account_format:int):
+    customer_objects = {}
+    for i in range(1,count):
+        customer = Customer(customer_id=i)
+        
+        customer_objects[customer._account_no]=customer
+
+
 
     
+
+
     return customer_objects
 
 
@@ -101,3 +111,4 @@ if __name__=="__main__":
     # print(f"Searching for 1111-9999999999 took {end-start} seconds. ")
 
     customer_objects = create_customers(10,10)
+    print(customer_objects)
