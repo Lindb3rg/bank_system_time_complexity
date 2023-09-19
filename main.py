@@ -15,7 +15,7 @@ class Customer:
 
     def __init__(self,account_no:int, name = None,birthdate=None):
         
-        # self.customer_id = customer_id
+        
         if name is None:
             self._name = self._create_new_name()
         else:
@@ -27,9 +27,7 @@ class Customer:
 
         self._created = datetime.now()
         self._last_updated = datetime.now()
-        self._account_prefix = "1111-"
         self._account_no = account_no
-        # self._account_no = f"{self._account_prefix}{str(customer_id).zfill(10)}"
         self._balance = 0
 
 
@@ -68,22 +66,21 @@ def account_no_formatter(number:int, account_prefix="1111"):
 
 
 @time_logged_function
-def create_customers(count:int,account_format:int):
+def create_customers(count:int):
 
     customer_dicts = {}
 
-    [customer_dicts.update({account_no_formatter(i): Customer(account_no=account_no_formatter(i))}) for i in range(10)]
-    print(customer_dicts)
+    [customer_dicts.update({account_no_formatter(i): Customer(account_no=account_no_formatter(i))}) for i in range(1,count)]
 
     return customer_dicts
 
 
-
-def search_account_no(list:list,account_no:str):
-    for i in list:
-        if i.account == account_no:
-            return print(i)
-    return print("Could not find account number")
+@time_logged_function
+def search_account_no(customer_dict:dict,account_no:str):
+    try:
+        return print(f"{customer_dict.get(account_no)}")
+    except:
+        return print("Could not find account number")
 
 
 
@@ -91,30 +88,13 @@ def search_account_no(list:list,account_no:str):
 
 
 if __name__=="__main__":
-    customer_objects = []
-    customer_objects = create_customers(10,10)
-    print(customer_objects)
-
-    start = time()
-    customer_objects = create_customers(10 ** 7,10)
-    end = time()
-    print(f"10 million customers created in {end-start} seconds.")
     
-
-    start = time()
+    customer_objects = create_customers(10 ** 7)
+    
     search_1 = search_account_no(customer_objects,"1111-0000001000")
-    end = time()
-    print(f"Searching for 1111-0000001000 took {end-start} seconds. ")
     
-
-    start = time()
     search_2 = search_account_no(customer_objects,"1111-0009999999")
-    end = time()
-    print(f"Searching for 1111-0009999999 took {end-start} seconds. ")
     
-
-    start = time()
-    search_2 = search_account_no(customer_objects,"1111-9999999999")
-    end = time()
-    print(f"Searching for 1111-9999999999 took {end-start} seconds. ")
+    search_3 = search_account_no(customer_objects,"1111-9999999999")
+    
 
