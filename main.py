@@ -1,18 +1,21 @@
 from dataclasses import dataclass
 from datetime import datetime,date,timedelta
 from time import time
+from decorators import time_logged_function
 import random
 from random import randint
         
 
-    
+
 
 
 
 class Customer:
-    def __init__(self,customer_id=int, name = None,birthdate=None):
+
+
+    def __init__(self,account_no:int, name = None,birthdate=None):
         
-        self.customer_id = customer_id
+        # self.customer_id = customer_id
         if name is None:
             self._name = self._create_new_name()
         else:
@@ -21,10 +24,12 @@ class Customer:
             self._birthdate = self._create_new_birthdate()
         else:
             self._birthdate = birthdate
+
         self._created = datetime.now()
         self._last_updated = datetime.now()
         self._account_prefix = "1111-"
-        self._account_no = f"{self._account_prefix}{str(customer_id).zfill(10)}"
+        self._account_no = account_no
+        # self._account_no = f"{self._account_prefix}{str(customer_id).zfill(10)}"
         self._balance = 0
 
 
@@ -57,21 +62,21 @@ class Customer:
     
 
 
+def account_no_formatter(number:int, account_prefix="1111"):
+    return f"{account_prefix}-{str(number).zfill(10)}"
 
 
+
+@time_logged_function
 def create_customers(count:int,account_format:int):
-    customer_objects = {}
-    for i in range(1,count):
-        customer = Customer(customer_id=i)
-        
-        customer_objects[customer._account_no]=customer
 
+    customer_dicts = {}
 
+    [customer_dicts.update({account_no_formatter(i): Customer(account_no=account_no_formatter(i))}) for i in range(10)]
+    print(customer_dicts)
 
-    
+    return customer_dicts
 
-
-    return customer_objects
 
 
 def search_account_no(list:list,account_no:str):
@@ -83,9 +88,30 @@ def search_account_no(list:list,account_no:str):
 
 
 
-customer_objects = []
+
 
 if __name__=="__main__":
+    customer_objects = []
+    customer_objects = create_customers(10,10)
+    print(customer_objects)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # start = time()
     # customer_objects = create_customers(10 ** 7,10)
@@ -110,5 +136,3 @@ if __name__=="__main__":
     # end = time()
     # print(f"Searching for 1111-9999999999 took {end-start} seconds. ")
 
-    customer_objects = create_customers(10,10)
-    print(customer_objects)
