@@ -2,6 +2,7 @@ from datetime import datetime,date,timedelta
 from time import time
 import random
 from random import randint
+from decorators import time_logged_function
         
 
 class Customer:
@@ -46,7 +47,7 @@ class Customer:
         self._account_no = self._account_prefix + input
     
 
-
+@time_logged_function
 def create_customers(count:int,account_format:int):
     customer_objects = []
     for i in range(1,count):
@@ -57,7 +58,7 @@ def create_customers(count:int,account_format:int):
     
     return customer_objects
 
-
+time_logged_function
 def search_account_no(list:list,account_no:str):
     for i in list:
         if i.account == account_no:
@@ -72,25 +73,13 @@ customer_objects = []
 
 if __name__=="__main__":
 
-    start = time()
+    
     customer_objects = create_customers(10 ** 7,10)
-    end = time()
-    print(f"10 million customers created in {end-start} seconds.")
     
+    search_1 = search_account_no(customer_objects,"1111-0000001000")    
 
-    start = time()
-    search_1 = search_account_no(customer_objects,"1111-0000001000")
-    end = time()
-    print(f"Searching for 1111-0000001000 took {end-start} seconds. ")
-    
-
-    start = time()
     search_2 = search_account_no(customer_objects,"1111-0009999999")
-    end = time()
-    print(f"Searching for 1111-0009999999 took {end-start} seconds. ")
-    
 
-    start = time()
-    search_2 = search_account_no(customer_objects,"1111-9999999999")
-    end = time()
-    print(f"Searching for 1111-9999999999 took {end-start} seconds. ")
+    search_3 = search_account_no(customer_objects,"1111-9999999999")
+    
+    
