@@ -1,7 +1,7 @@
 from datetime import datetime,date,timedelta
 from decorators import time_logged_function
 import random
-from random import randint,randrange
+from random import randint
 from sort_algorithms import quick_sort
         
 
@@ -119,16 +119,17 @@ def create_n_accounts(n_accounts):
 
 
 @time_logged_function
-def search_account_no(list:list,account_no:str):
+def search_account_no(account_list:list,account_no:str):
     
     if "1111-" in account_no:
         account_no = account_no.replace("1111-","")
-    for i in list:
+    for i in account_list:
         if i.account == account_no:
             i.account_prefix(prefix=True)
             print(f"\n*** Account number found: {i} ***")
             print(f"{i.name}, {i.account}")
-            return 
+            return
+        
     return print("Could not find account number")
 
 
@@ -138,5 +139,8 @@ def search_account_no(list:list,account_no:str):
 
 if __name__=="__main__":
     customer_objects = []
-    customer_objects = create_customers(10**7)
+    customer_objects = create_customers(10**5)
     load_quick_sort(customer_objects)
+    search_account_no(customer_objects,"1111-0000001000")
+    search_account_no(customer_objects,"1111-0009999999")
+    search_account_no(customer_objects,"1111-9999999999")

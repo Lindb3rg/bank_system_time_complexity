@@ -12,7 +12,7 @@ def time_logged_function(func:callable):
         end = time()
         print(f"\nFinished {func.__name__} in {end-start} seconds\n")
         with open("time_log.txt","a") as file:
-            file.write(f"Finished {func.__name__} in {end-start} seconds\n")
+            file.write(f"Finished {func.__name__} in {end-start} seconds\n with output{output}")
             
 
         return output
