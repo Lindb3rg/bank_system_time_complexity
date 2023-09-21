@@ -1,0 +1,3 @@
+Finished create_n_accounts in 0.8375580310821533 seconds
+Finished create_customers in 189.3436460494995 seconds
+Finished load_quick_sort in 501.282429933548 seconds
