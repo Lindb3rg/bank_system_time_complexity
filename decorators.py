@@ -9,7 +9,10 @@ def time_logged_function(func:callable):
         start = time()
         output = func(*args,**kwargs)
         end = time()
-        print(f"Finished {func.__name__} in {end-start} seconds\n")
+        elapsed_time = end-start
+        seconds,remainder = divmod(elapsed_time,1)
+        micro_secods = remainder * 1e6
+        print(f"\nFinished {func.__name__} in {seconds} seconds and {micro_secods} micro seconds\n")
 
 
         return output

@@ -77,12 +77,15 @@ def create_customers(count:int):
 
 @time_logged_function
 def search_account_no(customer_dict:dict,account_no:str):
-    try:
-        return print(f"{customer_dict.get(account_no)}")
-    except:
-        return print("Could not find account number")
 
+    if account_no in customer_dict:
 
+        return print(customer_dict[account_no])
+
+    else:
+
+        return print(f"Could not find {account_no} in incoming dict") 
+    
 
 
 
