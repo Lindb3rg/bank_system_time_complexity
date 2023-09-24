@@ -3,6 +3,7 @@ from decorators import time_logged_function
 import random
 from random import randint,randrange
 from sort_algorithms import quick_sort
+
         
 
 
@@ -108,9 +109,13 @@ def create_customers(count:int)->list[Customer]:
 
 
 
+
+
 @time_logged_function
 def load_quick_sort(array):
     quick_sort(array,0, len(array)-1)
+
+
 
 @time_logged_function
 def create_n_accounts(n_accounts):
@@ -138,5 +143,7 @@ def search_account_no(list:list,account_no:str):
 
 if __name__=="__main__":
     customer_objects = []
-    customer_objects = create_customers(10**7)
+    customer_objects = create_customers(10**5)
     load_quick_sort(customer_objects)
+
+
