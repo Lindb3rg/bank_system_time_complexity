@@ -1,9 +1,7 @@
 from datetime import datetime,date,timedelta
 from decorators import time_logged_function
 import random
-from random import randint
 from sort_algorithms import quick_sort
-        
 
 
 
@@ -50,7 +48,7 @@ class Customer:
         start = date(1900,1,1)
         end = date.today()
         delta = end - start
-        random_days = randint(0,delta.days)
+        random_days = random.randint(0,delta.days)
         return start + timedelta(days=random_days)
 
 
@@ -119,18 +117,24 @@ def create_n_accounts(n_accounts):
 
 
 @time_logged_function
-def search_account_no(account_list:list,account_no:str):
+def binary_search(list_of_objects:list,target:str):
+    if "1111-" in target:
+        target = target.replace("1111-","")
+
+    low,high = 0, len(list_of_objects) - 1
+
+    while low <= high:
+        mid = (low+high) // 2
+        mid_list = list_of_objects[mid]
+        if mid_list.account == target:
+            return print(f"{mid_list.name}, {mid_list.account}")
+        elif mid_list.account < target:
+            low = mid + 1
+        else:
+            high = mid - 1
     
-    if "1111-" in account_no:
-        account_no = account_no.replace("1111-","")
-    for i in account_list:
-        if i.account == account_no:
-            i.account_prefix(prefix=True)
-            print(f"\n*** Account number found: {i} ***")
-            print(f"{i.name}, {i.account}")
-            return
-        
-    return print("Could not find account number")
+    return print("Could not find account number in list")
+
 
 
 
@@ -141,6 +145,6 @@ if __name__=="__main__":
     customer_objects = []
     customer_objects = create_customers(10**5)
     load_quick_sort(customer_objects)
-    search_account_no(customer_objects,"1111-0000001000")
-    search_account_no(customer_objects,"1111-0009999999")
-    search_account_no(customer_objects,"1111-9999999999")
+    binary_search(customer_objects,target="1111-0000050000")
+    binary_search(customer_objects,target="1111-0009999999")
+    binary_search(customer_objects,target="1111-9999999999")
