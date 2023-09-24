@@ -143,8 +143,8 @@ def binary_search(list_of_objects:list,target:str):
 
 if __name__=="__main__":
     customer_objects = []
-    customer_objects = create_customers(10**5)
+    customer_objects = create_customers(10**7)
     load_quick_sort(customer_objects)
-    binary_search(customer_objects,target="1111-0000050000")
+    binary_search(customer_objects,target="1111-0000001000")
     binary_search(customer_objects,target="1111-0009999999")
     binary_search(customer_objects,target="1111-9999999999")
