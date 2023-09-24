@@ -1,5 +1,4 @@
 from datetime import datetime,date,timedelta
-from time import time
 import random
 from random import randint
 from decorators import time_logged_function
@@ -58,7 +57,7 @@ def create_customers(count:int,account_format:int):
     
     return customer_objects
 
-time_logged_function
+@time_logged_function
 def search_account_no(list:list,account_no:str):
     for i in list:
         if i.account == account_no:
