@@ -1,9 +1,7 @@
-from dataclasses import dataclass
 from datetime import datetime,date,timedelta
-from time import time
 from decorators import time_logged_function
 import random
-from random import randint
+
         
 
 
@@ -45,7 +43,7 @@ class Customer:
         start = date(1900,1,1)
         end = date.today()
         delta = end - start
-        random_days = randint(0,delta.days)
+        random_days = random.randint(0,delta.days)
         return start + timedelta(days=random_days)
 
 
@@ -53,10 +51,7 @@ class Customer:
     @property
     def account(self):
         return self._account_no
-    
-    @account.setter
-    def account(self, input):
-        self._account_no = self._account_prefix + input
+
     
 
 
