@@ -2,7 +2,7 @@ from datetime import datetime,date,timedelta
 import random
 from random import randint
 from decorators import time_logged_function
-        
+
 
 
 class Customer:
