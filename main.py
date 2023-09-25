@@ -4,6 +4,7 @@ from random import randint
 from decorators import time_logged_function
         
 
+
 class Customer:
     def __init__(self,name = None,birthdate=None):
         
